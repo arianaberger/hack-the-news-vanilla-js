@@ -7,8 +7,13 @@ function ready(callbackFunction){
 }
 ready(event => {
   console.log('JS is ready to go!');
-  getSearchResults()
+  searchOnClick()
 })
+
+function searchOnClick() {
+  const searchButton = getSearchButton();
+  searchButton.addEventListener("click", getSearchResults)
+}
 
 // Use fetch request to make call to API
 function getSearchResults() {
@@ -20,6 +25,10 @@ function getSearchResults() {
     .then(function(json) {
       console.log(json.hits);
     })
+}
+
+function getSearchButton() {
+  return document.getElementById("searchButton");
 }
 
 // Grab search value from DOM
