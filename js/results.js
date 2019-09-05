@@ -7,15 +7,22 @@ function ready(callbackFunction){
 }
 ready(event => {
   console.log('JS is ready to go!');
-  getSearchResults('hello')
+  getSearchResults()
 })
 
-function getSearchResults(search) {
-  fetch(`http://hn.algolia.com/api/v1/search?query=${search}`)
+// Use fetch request to make call to API
+function getSearchResults() {
+  const searchValue = getSearchValue();
+  fetch(`http://hn.algolia.com/api/v1/search?query=${searchValue}`)
     .then(function(resp) {
       return resp.json();
     })
     .then(function(json) {
       console.log(json.hits);
     })
+}
+
+// Grab search value from DOM
+function getSearchValue() {
+  return document.getElementById("searchValue").innerHTML
 }
