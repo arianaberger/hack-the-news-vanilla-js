@@ -12,19 +12,25 @@ ready(event => {
 
 function searchOnClick() {
   const searchButton = getSearchButton();
-  searchButton.addEventListener("click", getSearchResults)
+  searchButton.addEventListener("click", getSearchResults);
 }
 
 // Use fetch request to make call to API
 function getSearchResults() {
-  const searchValue = getSearchValue();
+  const searchValue = getSearchTerm().value;
   fetch(`http://hn.algolia.com/api/v1/search?query=${searchValue}`)
   .then(function(resp) {
     return resp.json();
   })
   .then(function(json) {
     console.log(json.hits);
+    resetForm();
   })
+}
+
+function resetForm() {
+  const searchForm = getSearchTerm();
+  searchForm.value = "";
 }
 
 // Grab elements from DOM
@@ -32,6 +38,6 @@ function getSearchButton() {
   return document.getElementById("searchButton");
 }
 
-function getSearchValue() {
-  return document.getElementById("searchValue").value
+function getSearchTerm() {
+  return document.getElementById("searchValue")
 }
