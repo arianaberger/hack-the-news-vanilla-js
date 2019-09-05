@@ -19,19 +19,19 @@ function searchOnClick() {
 function getSearchResults() {
   const searchValue = getSearchValue();
   fetch(`http://hn.algolia.com/api/v1/search?query=${searchValue}`)
-    .then(function(resp) {
-      return resp.json();
-    })
-    .then(function(json) {
-      console.log(json.hits);
-    })
+  .then(function(resp) {
+    return resp.json();
+  })
+  .then(function(json) {
+    console.log(json.hits);
+  })
 }
 
+// Grab elements from DOM
 function getSearchButton() {
   return document.getElementById("searchButton");
 }
 
-// Grab search value from DOM
 function getSearchValue() {
-  return document.getElementById("searchValue").innerHTML
+  return document.getElementById("searchValue").value
 }
