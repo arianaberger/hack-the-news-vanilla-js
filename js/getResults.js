@@ -17,15 +17,21 @@ function searchOnClick() {
 
 // Use fetch request to make call to API
 function getSearchResults() {
-  const searchValue = getSearchTerm().value;
-  fetch(`http://hn.algolia.com/api/v1/search?query=${searchValue}`)
-  .then(function(resp) {
-    return resp.json();
-  })
-  .then(function(json) {
-    console.log(json.hits);
-    resetForm();
-  })
+  if (getSearchTerm().value != '') {
+    const searchValue = getSearchTerm().value;
+    fetch(`http://hn.algolia.com/api/v1/search?query=${searchValue}`)
+    .then(function(resp) {
+      return resp.json();
+    })
+    .then(function(json) {
+      console.log(json.hits);
+      let results = new resultsArray(json);
+      console.log(results)
+      resetForm();
+    })
+  } else {
+    console.log("you empty!")
+  }
 }
 
 function resetForm() {
