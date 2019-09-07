@@ -10,6 +10,7 @@ ready(event => {
   searchOnClick()
 })
 
+// Add event listener to submit button
 function searchOnClick() {
   const searchButton = getSearchButton();
   searchButton.addEventListener("click", getSearchResults);
@@ -34,6 +35,8 @@ function getSearchResults() {
   }
 }
 
+
+// Reset form after submission
 function resetForm() {
   const searchForm = getSearchTerm();
   searchForm.value = "";
