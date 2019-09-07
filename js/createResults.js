@@ -7,7 +7,7 @@ class resultsObject {
     this.author = obj.author
     this.title = obj.title || obj.story_title
     this.url = obj.url || obj.story_url
-    this.date = createDate(obj)
+    this.date = createDate(obj.created_at)
 
     debugger
   }
@@ -15,11 +15,11 @@ class resultsObject {
 
 function getMonth(date) {
   let num = date.getMonth()
-  return month[num]
+  return months[num]
 }
 
 function createDate(obj) {
-  let dateObj = new Date(obj.created_at)
+  let dateObj = new Date(obj)
   let month = getMonth(dateObj)
   let year = dateObj.getFullYear()
   let day = dateObj.getDate()
@@ -27,7 +27,7 @@ function createDate(obj) {
   return `${month} ${day}, ${year}`
 }
 
-const month = [
+const months = [
   "Jan",
   "Feb",
   "Mar",
