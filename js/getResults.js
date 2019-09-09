@@ -27,12 +27,25 @@ function getSearchResults() {
     .then(function(json) {
       console.log(json.hits);
       let results = new resultsArray(json);
-      console.log(results)
+      let resultsHTML = createResultsHTML(results);
+      document.getElementById("results").innerHTML = resultsHTML;
       resetForm();
     })
   } else {
-    console.log("you empty!")
+    console.log("you empty!");
   }
+}
+
+function createResultsHTML(results) {
+  const resultsHTML = []
+  results.forEach(r => {
+     let html = (`
+      <h3><a href="${r.url}" target="_blank">${r.title}</a></h3>
+      <div> ${r.author} | ${r.date}</div>
+    `)
+    resultsHTML.push(html)
+  })
+  return resultsHTML.join('')
 }
 
 
@@ -48,5 +61,5 @@ function getSearchButton() {
 }
 
 function getSearchTerm() {
-  return document.getElementById("searchValue")
+  return document.getElementById("searchValue");
 }
