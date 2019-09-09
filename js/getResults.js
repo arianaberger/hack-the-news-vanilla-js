@@ -19,6 +19,7 @@ function searchOnClick() {
 // Use fetch request to make call to API
 function getSearchResults() {
   if (getSearchTerm().value != '') {
+    updateSearchTerms();
     const searchValue = getSearchTerm().value;
     fetch(`http://hn.algolia.com/api/v1/search?query=${searchValue}`)
     .then(function(resp) {
@@ -48,7 +49,6 @@ function createResultsHTML(results) {
   return resultsHTML.join('')
 }
 
-
 // Reset form after submission
 function resetForm() {
   const searchForm = getSearchTerm();
@@ -62,4 +62,13 @@ function getSearchButton() {
 
 function getSearchTerm() {
   return document.getElementById("searchValue");
+}
+
+// Add search term to recent searches dropdown
+function updateSearchTerms() {
+  const searchTerm = getSearchTerm().value;
+  const html = (`
+    <option value=${searchTerm}>${searchTerm}</option>
+  `)
+    document.getElementById("previous-searches").innerHTML += html;
 }
