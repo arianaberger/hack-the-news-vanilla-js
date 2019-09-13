@@ -67,8 +67,6 @@ function getSearchTerm() {
 // Add search term to recent searches dropdown
 function updateSearchTerms() {
   const searchTerm = getSearchTerm().value;
-  const html = (`
-    <option value=${searchTerm}>${searchTerm}</option>
-  `)
-    document.getElementById("previous-searches").innerHTML += html;
+  const html = (`<option value=${searchTerm}>${searchTerm}</option>`)
+  document.getElementById("previous-searches").innerHTML += html;
 }
