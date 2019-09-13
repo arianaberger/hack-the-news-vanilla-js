@@ -41,8 +41,10 @@ function createResultsHTML(results) {
   const resultsHTML = []
   results.forEach(r => {
      let html = (`
-      <h3><a href="${r.url}" target="_blank">${r.title}</a></h3>
-      <div> ${r.author} | ${r.date}</div>
+      <div class="Result">
+        <h3><a href="${r.url}" target="_blank" class="App-link">${r.title}</a></h3>
+        <div class="Result-sub"> ${r.author} | ${r.date}</div>
+      </div>
     `)
     resultsHTML.push(html)
   })
